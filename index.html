@@ -1,0 +1,79 @@
+---
+layout: default
+---
+
+
+
+  <div class="home">
+<div class="container-fluid">
+    
+  
+
+      <div class="card-columns">
+        {% for post in paginator.posts %}
+        
+          
+
+              <div class="card shadow-sm">
+  	            
+			
+                  {% assign yt = post.content | split:"!-- [ytb "%}      
+                  {% assign htm = yt[1] | split:"] -->" | first %}
+                  {% assign thesize = htm.size %}
+                  {% if htm and thesize == 11 %}
+                  {% include youtubeplayer.html id=htm %}
+                  {% endif %}
+                  {% unless htm or thesize == 11 %}
+                  {% assign image = post.content | split:"!-- ![header](" %}
+                  {% assign html = image[1] | split:") -->" | first %}
+                  {% if html and html != "" %}
+                  <img class="card-img-top" src="{{ html }}" alt="header" />
+                  {% endif %}
+                  {% endunless %}
+
+
+			
+                 <div class="card-body">
+		
+                  <h4><a class="text-black card-title text-info" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h4>
+		
+<div class="byline text-center"><span><i class="fa fa-calendar"></i> {{post.date | date: '%Y, %b %d'}}&nbsp;&nbsp;&nbsp;&nbsp;</span><span><i class="fas fa-pencil-alt" aria-hidden="true"></i> {{site.author}}</span></div>
+                   <p class="card-text">{{ post.content | strip_html | truncatewords:50 }}</p>
+                   <a href="{{ post.url | prepend: site.baseurl }}" class="btn btn-info shadow-sm text-white" role="button">Read More</a>
+                 </div>
+                 
+               </div>
+
+          
+          
+            {% endfor %}
+          </div>
+        
+<nav aria-label="Page navigation">
+{% if paginator.total_pages > 1 %}
+  <ul class="pagination justify-content-center">
+{% if paginator.previous_page == 1 %}
+ <li class="page-item shadow-sm">
+      <a class="page-link" href="{{ site.baseurl }}{{ paginator.previous_page_path }}">&laquo; Previous</a>
+    </li>
+{% elsif paginator.previous_page %}
+    <li class="page-item shadow-sm">
+      <a class="page-link" href="{{ site.baseurl }}{{ paginator.previous_page_path }}/index.html">&laquo; Previous</a>
+    </li>
+{% else %}
+<li class="page-item disabled shadow-sm">
+      <a class="page-link" href="{{ site.baseurl }}{{ paginator.previous_page_path }}">&laquo; Previous</a>
+    </li>
+{% endif %}
+
+   {% if paginator.next_page %}
+    <li class="page-item shadow-sm"><a class="page-link" href="{{ site.baseurl }}/page{{ paginator.next_page }}/index.html">Next &raquo;</a></li>
+  {% else %}
+    <li class="page-item disabled shadow-sm"><a class="page-link" href="{{ paginator.next_page_path }}">Next &raquo;</a></li>
+  {% endif %}
+  </ul>
+{% endif %}
+</nav>     
+
+     
+    </div></div>

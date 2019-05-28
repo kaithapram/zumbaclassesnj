@@ -1,0 +1,31 @@
+title: Your awesome title
+email: your-email@domain.com
+description: You can update description in update blog details page.
+
+baseurl: "/"
+url: http://keralahost.in/zumbaclassesnj
+google_adsense: Your-adsense-code
+
+markdown: kramdown
+
+name: Your awesome title
+
+date: 2019-05-28 21:55:02 +0000
+
+
+logo: false
+sass:
+    load_paths:
+        - _sass
+        - bs
+paginate: 10
+adsid: ca-pub-8582082279264878
+domain_name: http://keralahost.in/zumbaclassesnj/
+google_analytics: UA-31XXXXXX-X
+gems:
+  - jekyll-paginate
+  - jekyll-sitemap
+cover: 
+author_image: 
+
+author: zumbaclassesnj
